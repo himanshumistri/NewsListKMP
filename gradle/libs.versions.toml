@@ -24,6 +24,7 @@ koinCoreVersion = "3.5.0"
 kotlinxCoroutinesCoreVersion = "1.7.3"
 ktorVersion = "2.3.5"
 pagingCommonVersion = "3.3.0-alpha02-0.4.0"
+gmazzo-buildconfig-version="5.3.5"
 
 [plugins]
 
@@ -33,6 +34,7 @@ kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", versi
 android-application = { id = "com.android.application", version.ref = "agp" }
 android-library = { id = "com.android.library", version.ref = "agp" }
 jetbrains-compose = { id = "org.jetbrains.compose", version.ref = "compose-jetbrains" }
+gmazzo-buildconfig = { id = "com.github.gmazzo.buildconfig", version.ref = "gmazzo-buildconfig-version" }
 
 [libraries]
 

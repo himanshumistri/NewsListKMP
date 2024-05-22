@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.RoundedCornerShape
 
 import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
@@ -22,6 +23,7 @@ import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
@@ -112,13 +114,14 @@ class MainScreen(private val component: MainComponent) : KoinComponent {
         Card(
             modifier = Modifier
                 .fillMaxWidth()
+                .clip(RoundedCornerShape(5.dp))
                 .padding(8.dp)
         ) {
             Column {
 
                 CoilImage(
                     imageModel = { imageUrl },
-                    modifier = Modifier.height(150.dp).fillMaxWidth(), // loading a network image or local resource using an URL.
+                    modifier = Modifier.height(190.dp).fillMaxWidth(), // loading a network image or local resource using an URL.
                     imageOptions = ImageOptions(
                         contentScale = ContentScale.FillBounds,
                         alignment = Alignment.Center

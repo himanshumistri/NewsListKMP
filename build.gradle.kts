@@ -8,6 +8,8 @@ plugins {
     alias(libs.plugins.kotlin.multiplatform).apply(false)
     alias(libs.plugins.kotlin.serialization).apply(false)
     alias(libs.plugins.jetbrains.compose).apply(false)
+    //id("com.github.gmazzo.buildconfig") version "5.3.5"
+    alias(libs.plugins.gmazzo.buildconfig).apply(false)
 }
 
 tasks.register("clean", Delete::class) {

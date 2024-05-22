@@ -7,6 +7,8 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.jetbrains.compose)
+    alias(libs.plugins.gmazzo.buildconfig)
+    //id("com.github.gmazzo.buildconfig") version "<current version>"
 }
 
 kotlin {
@@ -133,4 +135,30 @@ tasks.register("printApiKeyFile") {
             println("secrets.properties file not found.")
         }
     }
+}
+
+buildConfig {
+    val path = "${project.projectDir.absolutePath}/secrets.properties"
+    var mApiKey =""
+    println("File path is $path")
+    val propertiesFile = File(path) // Replace with your file path
+    if (propertiesFile.exists()) {
+        val props = Properties()
+        try {
+            props.load(propertiesFile.inputStream())
+            val apiKey = props.getProperty("API_KEY")
+            if (apiKey != null) {
+                println("API_KEY (for informational purposes only): $apiKey")
+                mApiKey = apiKey
+                logger.warn("Storing API keys in project properties is not ideal. Consider using environment variables for secure storage.")
+            } else {
+                println("API_KEY property not found in secrets.properties.")
+            }
+        } catch (e: Exception) {
+            logger.warn("Error loading secrets.properties: $e")
+        }
+    } else {
+        println("secrets.properties file not found.")
+    }
+    buildConfigField("API_KEY",mApiKey)
 }

@@ -12,6 +12,10 @@ struct iOSApp: App {
                 .ignoresSafeArea(.all)
         }
     }
+
+      init() {
+            KoinKt.doInitKoin()
+       }
 }
 
 class AppDelegate: NSObject, UIApplicationDelegate {

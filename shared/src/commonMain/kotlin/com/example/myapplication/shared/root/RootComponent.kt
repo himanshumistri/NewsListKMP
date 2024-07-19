@@ -11,6 +11,8 @@ interface RootComponent {
 
     fun onBackClicked(toIndex: Int)
 
+    fun popScreen(screenConfig: DefaultRootComponent.Config)
+
     sealed class Child {
         class Main(val component: MainComponent) : Child()
         class Welcome(val component: WelcomeComponent) : Child()

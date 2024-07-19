@@ -8,6 +8,7 @@ plugins {
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.jetbrains.compose)
     alias(libs.plugins.gmazzo.buildconfig)
+    //alias(libs.plugins.compose.compiler)
     //id("com.github.gmazzo.buildconfig") version "<current version>"
 }
 
@@ -60,7 +61,7 @@ kotlin {
                 api(libs.ktor.client.content.negotiation)
                 api(libs.kotlinx.coroutines.core)
                 api(libs.kermit)
-
+                api(libs.kamel.image)
             }
         }
 
@@ -71,12 +72,17 @@ kotlin {
             api(libs.ktor.client.darwin)
         }
 
+        jvmMain.dependencies {
+            api(libs.ktor.client.okhttp)
+        }
+
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))
             }
         }
     }
+    task("testClasses")
 }
 
 android {

@@ -14,6 +14,7 @@ import com.arkivanov.decompose.extensions.compose.jetbrains.stack.animation.plus
 import com.arkivanov.decompose.extensions.compose.jetbrains.stack.animation.scale
 import com.arkivanov.decompose.extensions.compose.jetbrains.stack.animation.stackAnimation
 import com.example.myapplication.main.MainScreen
+import com.example.myapplication.shared.root.DefaultRootComponent
 import com.example.myapplication.shared.root.RootComponent
 import com.example.myapplication.shared.root.RootComponent.Child
 import com.example.myapplication.welcome.WelcomeContent
@@ -31,7 +32,9 @@ fun RootContent(
                 animation = stackAnimation(fade() + scale())
             ) {
                 when (val instance = it.instance) {
-                    is Child.Main -> MainScreen(component= instance.component).MainContent()
+                    is Child.Main -> MainScreen(component= instance.component, onBackClick = {
+                        component.popScreen(DefaultRootComponent.Config.Welcome)
+                    }).MainContent()
                     is Child.Welcome -> WelcomeContent(component = instance.component)
                 }
             }

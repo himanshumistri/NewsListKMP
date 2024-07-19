@@ -1,10 +1,15 @@
 @file:Suppress("DSL_SCOPE_VIOLATION")
 
+import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
+
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.compose)
     alias(libs.plugins.kotlin.serialization)
+   // alias(libs.plugins.compose.compiler)
 }
 
 kotlin {
@@ -18,6 +23,11 @@ kotlin {
                 jvmTarget = libs.versions.jvmTarget.get()
             }
         }
+
+        /*@OptIn(ExperimentalKotlinGradlePluginApi::class)
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_11)
+        }*/
     }
 
     listOf(
@@ -42,9 +52,9 @@ kotlin {
                 api(project(":shared"))
 
                 // Compose Libraries
-                implementation(compose.ui)
-                implementation(compose.foundation)
-                implementation(compose.material)
+                api(compose.ui)
+                api(compose.foundation)
+                api(compose.material)
 
                 // Decompose Libraries
                 api(libs.decompose.decompose)
@@ -53,6 +63,8 @@ kotlin {
             }
         }
     }
+
+    task("testClasses")
 }
 
 android {

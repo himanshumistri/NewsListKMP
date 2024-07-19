@@ -52,8 +52,12 @@ class DefaultRootComponent(
         navigation.popTo(index = toIndex)
     }
 
+    override fun popScreen(screenConfig: Config) {
+        navigation.push(screenConfig)
+    }
+
     @Serializable
-    private sealed interface Config {
+     sealed interface Config {
         @Serializable
         data object Main : Config
 

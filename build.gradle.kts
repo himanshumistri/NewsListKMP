@@ -10,6 +10,7 @@ plugins {
     alias(libs.plugins.jetbrains.compose).apply(false)
     //id("com.github.gmazzo.buildconfig") version "5.3.5"
     alias(libs.plugins.gmazzo.buildconfig).apply(false)
+   // alias(libs.plugins.compose.compiler).apply(false)
 }
 
 tasks.register("clean", Delete::class) {
